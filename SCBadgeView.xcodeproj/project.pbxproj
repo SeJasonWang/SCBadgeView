@@ -13,6 +13,8 @@
 		25E1875F1CA58A8F0056EEC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25E1875D1CA58A8F0056EEC7 /* Main.storyboard */; };
 		25E187611CA58A8F0056EEC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E187601CA58A8F0056EEC7 /* Assets.xcassets */; };
 		25E187641CA58A8F0056EEC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25E187621CA58A8F0056EEC7 /* LaunchScreen.storyboard */; };
+		25E1876F1CA58AAB0056EEC7 /* SCBadgeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25E1876C1CA58AAB0056EEC7 /* SCBadgeView.bundle */; };
+		25E187701CA58AAB0056EEC7 /* SCBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E1876E1CA58AAB0056EEC7 /* SCBadgeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		25E187601CA58A8F0056EEC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25E187631CA58A8F0056EEC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25E187651CA58A8F0056EEC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25E1876C1CA58AAB0056EEC7 /* SCBadgeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCBadgeView.bundle; sourceTree = "<group>"; };
+		25E1876D1CA58AAB0056EEC7 /* SCBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBadgeView.h; sourceTree = "<group>"; };
+		25E1876E1CA58AAB0056EEC7 /* SCBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 		25E187531CA58A8F0056EEC7 /* SCBadgeView */ = {
 			isa = PBXGroup;
 			children = (
+				25E1876B1CA58AAB0056EEC7 /* SCBadgeView */,
 				25E187571CA58A8F0056EEC7 /* AppDelegate.h */,
 				25E187581CA58A8F0056EEC7 /* AppDelegate.m */,
 				25E1875A1CA58A8F0056EEC7 /* ViewController.h */,
@@ -77,6 +83,16 @@
 				25E187551CA58A8F0056EEC7 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25E1876B1CA58AAB0056EEC7 /* SCBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				25E1876C1CA58AAB0056EEC7 /* SCBadgeView.bundle */,
+				25E1876D1CA58AAB0056EEC7 /* SCBadgeView.h */,
+				25E1876E1CA58AAB0056EEC7 /* SCBadgeView.m */,
+			);
+			path = SCBadgeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +154,7 @@
 			files = (
 				25E187641CA58A8F0056EEC7 /* LaunchScreen.storyboard in Resources */,
 				25E187611CA58A8F0056EEC7 /* Assets.xcassets in Resources */,
+				25E1876F1CA58AAB0056EEC7 /* SCBadgeView.bundle in Resources */,
 				25E1875F1CA58A8F0056EEC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25E187701CA58AAB0056EEC7 /* SCBadgeView.m in Sources */,
 				25E1875C1CA58A8F0056EEC7 /* ViewController.m in Sources */,
 				25E187591CA58A8F0056EEC7 /* AppDelegate.m in Sources */,
 				25E187561CA58A8F0056EEC7 /* main.m in Sources */,
