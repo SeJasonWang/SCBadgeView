@@ -15,38 +15,35 @@
 @end
 
 @implementation ViewController
-{
-    SCBadgeView *_badge;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _badge = [[SCBadgeView alloc] init];
-    [self.view addSubview:_badge];
-    [_badge mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-    }];
+    SCBadgeView *badgeLeft = [[SCBadgeView alloc] initWithFrame:CGRectMake(100, 100, 0, 0) alignment:SCBadgeViewAlignmentLeft];
+    badgeLeft.number = 12;
+    [self.view addSubview:badgeLeft];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _badge.number = 99;
+    SCBadgeView *badgeCenter = [[SCBadgeView alloc] initWithFrame:CGRectMake(100, 130, 0, 0) alignment:SCBadgeViewAlignmentCenter];
+    badgeCenter.number = 23;
+    [self.view addSubview:badgeCenter];
+
+    SCBadgeView *badgeRight = [[SCBadgeView alloc] initWithFrame:CGRectMake(100, 160, 0, 0) alignment:SCBadgeViewAlignmentRight];
+    badgeRight.number = 55;
+    [self.view addSubview:badgeRight];
+//    [_badge mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.view);
+//    }];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        badgeLeft.number = 991;
+        badgeCenter.number = 123;
+        badgeRight.number = 123;
     });
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.badgeXib.number = 12;
+        self.badgeXib.number = 112;
     });
-}
-
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//    
-//    _badge.frame = CGRectMake(100, 100, 30, 30);
-//}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

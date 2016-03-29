@@ -8,12 +8,50 @@
 
 #import "SCBadgeView.h"
 
+@interface UIView(easy)
+
+@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGSize size;
+
+@end
+
+@implementation UIView(easy)
+
+- (CGFloat)x {
+    return self.frame.origin.x;
+}
+
+- (void)setX:(CGFloat)x {
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
+}
+
+- (CGSize)size {
+    return self.frame.size;
+}
+
+- (void)setSize:(CGSize)size {
+    CGRect frame = self.frame;
+    frame.size = size;
+    self.frame = frame;
+}
+
+@end
+
+static CGSize const SCBadgeViewSize = {17, 17};
+
 @implementation SCBadgeView
 {
     UIButton *_button;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame alignment:SCBadgeViewAlignmentLeft];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame alignment:(SCBadgeViewAlignment)alignment {
+    _alignment = alignment;
     if (self = [super initWithFrame:frame]) {
         [self initializeSubViews];
     }
@@ -31,57 +69,52 @@
     self.hidden = YES;
     self.backgroundColor = [UIColor clearColor];
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *image = [self backgroundImageWithColor:[UIColor colorWithRed:255 / 255.0 green:102 / 255.0 blue:102 / 255.0 alpha:1] size:SCBadgeViewSize];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width / 2 - 0.5, 0, image.size.width / 2 - 0.5) resizingMode:UIImageResizingModeStretch];
+    [_button setBackgroundImage:image forState:UIControlStateNormal];
     _button.adjustsImageWhenHighlighted = NO;
     _button.titleLabel.font = [UIFont systemFontOfSize:10];
     [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:_button];
 }
 
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:CGRectMake(frame.origin.x, frame.origin.y, _button.frame.size.width, _button.frame.size.height)];
-}
-
-- (void)setBackgroundImageWithFrame:(CGRect)frame {
-    if (_button.currentImage.size.height != frame.size.height) {
-        UIImage *image = [self backgroundImageWithColor:[UIColor colorWithRed:255 / 255.0 green:102 / 255.0 blue:102 / 255.0 alpha:1] size:CGSizeMake(frame.size.height, frame.size.height)];
-        CGFloat width = image.size.width;
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, width / 2 - 0.5, 0, width / 2 - 0.5) resizingMode:UIImageResizingModeStretch];
-        [_button setBackgroundImage:image forState:UIControlStateNormal];
-    }
-}
-
 - (void)setNumber:(NSInteger)number {
     if (_number != number) {
         _number = number;
-        
         NSString *text;
-        if (number > 0 && number < 100) {
-            text = [NSString stringWithFormat:@"%zd", number];
+        if (number > 0) {
             self.hidden = NO;
-        } else if (number >= 100) {
-            text = @"99+";
-            self.hidden = NO;
+            if (number < 100) {
+                text = [NSString stringWithFormat:@"%zd", number];
+            } else {
+                text = @"99+";
+            }
+            [_button setTitle:text forState:UIControlStateNormal];
+            [_button.titleLabel sizeToFit];
+            CGSize size = _button.titleLabel.frame.size;
+            if (SCBadgeViewSize.height >= _button.titleLabel.bounds.size.width) {
+                size = SCBadgeViewSize;
+            } else {
+                size.height = SCBadgeViewSize.height;
+                size.width = _button.titleLabel.bounds.size.width + 6;
+                switch (_alignment) {
+                    case SCBadgeViewAlignmentLeft:
+                        // do nothing
+                        break;
+                    case SCBadgeViewAlignmentCenter:
+                        self.x -= (size.width - SCBadgeViewSize.width) / 2;
+                        break;
+                    case SCBadgeViewAlignmentRight:
+                        self.x -= size.width - SCBadgeViewSize.width;
+                        break;
+                }
+            }
+            self.size = size;
+            _button.size = size;            
         } else {
-            text = @"";
             self.hidden = YES;
+            text = @"";
         }
-        [_button setTitle:text forState:UIControlStateNormal];
-        [_button.titleLabel sizeToFit];
-        CGRect frame = _button.titleLabel.frame;
-        if (_button.titleLabel.bounds.size.height >= _button.titleLabel.bounds.size.width) {
-            frame.size.height = _button.titleLabel.bounds.size.height + 5;
-            frame.size.width = frame.size.height;
-            frame.origin.x -= 2.5;
-            frame.origin.y -= 2.5;
-        } else {
-            frame.size.height = _button.titleLabel.bounds.size.height + 5;
-            frame.size.width = _button.titleLabel.bounds.size.width + 9;
-            frame.origin.x -= 4.5;
-            frame.origin.y -= 2.5;
-        }
-        [self setBackgroundImageWithFrame:frame];
-        _button.frame = frame;
-        self.bounds = frame;
     }
 }
 
