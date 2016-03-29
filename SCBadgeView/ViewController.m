@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "SCBadgeView.h"
-#import "Masonry.h"
+
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet SCBadgeView *badgeXib;
 
 @end
@@ -39,6 +40,7 @@
         badgeLeft.number = 991;
         badgeCenter.number = 123;
         badgeRight.number = 123;
+        badgeRight.backgroundColor = [UIColor blueColor];
     });
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

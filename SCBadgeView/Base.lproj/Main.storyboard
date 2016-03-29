@@ -20,17 +20,35 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxq-0H-axX">
                                 <rect key="frame" x="275" y="285" width="51" height="31"/>
                             </switch>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cC7-YQ-efH" customClass="SCBadgeView">
+                                <rect key="frame" x="291" y="292" width="17" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="17" id="Owq-7X-kas"/>
+                                    <constraint firstAttribute="height" constant="17" id="jHL-ch-QnQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="alignment">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bxq-0H-axX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8km-gg-Ksd"/>
+                            <constraint firstItem="cC7-YQ-efH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AVE-5u-qUg"/>
                             <constraint firstItem="bxq-0H-axX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SJV-Qz-wJg"/>
+                            <constraint firstItem="cC7-YQ-efH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SNz-Cc-n7X"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="badgeXib" destination="cC7-YQ-efH" id="bNV-gf-nrH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="963" y="386"/>
+            <point key="canvasLocation" x="836" y="387"/>
         </scene>
     </scenes>
 </document>

@@ -46,6 +46,8 @@ static CGSize const SCBadgeViewSize = {17, 17};
     UIButton *_button;
 }
 
+#pragma mark - Life Cycle
+
 - (instancetype)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame alignment:SCBadgeViewAlignmentLeft];
 }
@@ -69,14 +71,15 @@ static CGSize const SCBadgeViewSize = {17, 17};
     self.hidden = YES;
     self.backgroundColor = [UIColor clearColor];
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *image = [self backgroundImageWithColor:[UIColor colorWithRed:255 / 255.0 green:102 / 255.0 blue:102 / 255.0 alpha:1] size:SCBadgeViewSize];
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width / 2 - 0.5, 0, image.size.width / 2 - 0.5) resizingMode:UIImageResizingModeStretch];
+    UIImage *image = [self backgroundImageWithColor:[UIColor colorWithRed:255 / 255.0 green:102 / 255.0 blue:102 / 255.0 alpha:1]];
     [_button setBackgroundImage:image forState:UIControlStateNormal];
     _button.adjustsImageWhenHighlighted = NO;
     _button.titleLabel.font = [UIFont systemFontOfSize:10];
     [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:_button];
 }
+
+#pragma mark Setter
 
 - (void)setNumber:(NSInteger)number {
     if (_number != number) {
@@ -118,7 +121,24 @@ static CGSize const SCBadgeViewSize = {17, 17};
     }
 }
 
-- (UIImage *)backgroundImageWithColor:(UIColor *)color size:(CGSize)size {
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    if (_backgroundColor != backgroundColor) {
+        _backgroundColor = backgroundColor;
+        [_button setBackgroundImage:[self backgroundImageWithColor:backgroundColor] forState:UIControlStateNormal];
+    }
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    if (_textColor != textColor) {
+        _textColor = textColor;
+        [_button setTitleColor:textColor forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark - Private Method
+
+- (UIImage *)backgroundImageWithColor:(UIColor *)color {
+    CGSize size = SCBadgeViewSize;
     UIGraphicsBeginImageContext(size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(ctx, [color CGColor]);
@@ -135,7 +155,7 @@ static CGSize const SCBadgeViewSize = {17, 17};
     UIImage *circleImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return circleImage;
+    return [circleImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width / 2 - 0.5, 0, image.size.width / 2 - 0.5) resizingMode:UIImageResizingModeStretch];
 }
 
 @end
