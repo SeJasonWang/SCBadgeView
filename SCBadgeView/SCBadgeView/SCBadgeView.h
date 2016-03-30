@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, SCBadgeViewAlignment) {
 
 @property (nonatomic, assign) NSInteger number;
 
-@property (nonatomic, strong) UIColor *backgroundColor;
-@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) IBInspectable UIColor *backgroundColor;
+@property (nonatomic, strong) IBInspectable UIColor *textColor;
 
 @end
